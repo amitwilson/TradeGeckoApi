@@ -1,0 +1,29 @@
+function newStockAdjustmentLineItem() {
+  var varID = "Variant_ID";
+  var saID = "Stock_Adjusment_Order_ID";
+  var token = 'Token';
+  var url = "https://api.tradegecko.com/stock_adjustment_line_items/";
+  var headers = {"Authorization": "Bearer "  + token};
+
+  var data = {
+    "stock_adjustment_id":saID,
+    "variant_id":varID,
+    "quantity": "+2", // The nuber of units to be added. Use -2 to subtract 2 units
+    "price":"8.25" // The price of the units being adjusted. This affects the inventory carrying cost
+  };
+  
+  var payLoad = JSON.stringify(data);
+  
+  var options = {
+    "method": "post",
+    "contentType": "application/json",
+    "headers": headers,
+    "payload": payLoad,
+    "muteHttpExceptions": true
+  }
+  
+  var response = UrlFetchApp.fetch(url, options);
+  var json = response.getContentText();
+  var data = JSON.parse(json);
+  Logger.log(data);
+}
