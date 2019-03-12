@@ -1,4 +1,4 @@
-function makeNew() {
+function makeNewProduct() {
   var token = 'aStringOfNumbers';
   var url = "https://api.tradegecko.com/products/";
   
