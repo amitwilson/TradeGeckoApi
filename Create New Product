@@ -1,0 +1,25 @@
+function makeNew() {
+  var token = 'aStringOfNumbers';
+  var url = "https://api.tradegecko.com/products/";
+  
+  var headers = {
+    "Authorization": "Bearer "  + token
+  };
+  
+  var data = {
+    'product' : {'name' : 'My New Product'}
+  };
+  
+  var options = {
+    "method": "post",
+    'contentType': 'application/json',
+    "headers": headers,
+    "payload": JSON.stringify(data),
+    "muteHttpExceptions": true
+  }
+  
+  var response = UrlFetchApp.fetch(url, options);  
+  var json = response.getContentText();
+  var data = JSON.parse(json);
+  Logger.log(data);
+}
